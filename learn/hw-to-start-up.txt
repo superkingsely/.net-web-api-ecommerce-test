@@ -1,0 +1,11 @@
+
+cli cmd
+
+create ur project folder
+
+dotnet new sln -n <project folder>
+
+inside the root create the src folder
+then inside the src/ dotnet new webapi -n <folder name> [note the webapi is the csproj]
+
+now the gitignore file?
