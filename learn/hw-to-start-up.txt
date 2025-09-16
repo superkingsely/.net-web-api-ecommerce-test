@@ -46,3 +46,26 @@ dotnet new classlib -n MyApi.Domain
 rm -rf src/MyApi.Domain (bash to delete)
 -----------------------------------------------
 In .NET projects, the project name (.csproj) and the namespace it generates usually follow PascalCase (capitalized words)
+
+------------------------------------------------
+# Application depends on Domain
+dotnet add src/MyApi.Application/MyApi.Application.csproj reference src/MyApi.Domain/MyApi.Domain.csproj
+
+# Infrastructure depends on Application + Domain
+dotnet add src/MyApi.Infrastructure/MyApi.Infrastructure.csproj reference src/MyApi.Application/MyApi.Application.csproj
+dotnet add src/MyApi.Infrastructure/MyApi.Infrastructure.csproj reference src/MyApi.Domain/MyApi.Domain.csproj
+
+# WebApi depends on Application + Infrastructure
+dotnet add src/MyApi/MyApi.csproj reference src/MyApi.Application/MyApi.Application.csproj
+dotnet add src/MyApi/MyApi.csproj reference src/MyApi.Infrastructure/MyApi.Infrastructure.csproj
+-----------------------------------
+WebApi  →  Application  →  Domain
+   ↓            ↑
+Infrastructure ┘
+Domain = core business rules, entities, value objects
+
+Application = use cases, interfaces, DTOs
+
+Infrastructure = EF Core, external services, repository implementations
+
+WebApi = controllers, API endpoints
