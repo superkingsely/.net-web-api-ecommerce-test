@@ -9,3 +9,40 @@ inside the root create the src folder
 then inside the src/ dotnet new webapi -n <folder name> [note the webapi is the csproj]
 
 now the gitignore file?
+-------------------------------------------------------
+to run ur project
+cd MyWebApi/
+dotnet watch run
+That will launch your WebAPI directly.
+
+If you’re at the solution level (.sln), you must specify the project manually:
+
+bash
+Copy code
+dotnet watch run --project MyWebApi/MyWebApi.csproj
+
+-------------------------------------------------------
+2. For a Beginner in Clean Architecture
+
+👉 Since you’re just starting out and want something free, simple, but also production-ready, I’d recommend:
+
+SQL Server Express – if you want to stay close to Microsoft stack.
+
+PostgreSQL – if you want an open-source DB that scales globally (lots of companies using it).
+
+SQLite – if you’re just prototyping locally before moving to a real DB.
+
+✅ For you, I’d say start with SQL Server Express or PostgreSQL.
+Both are easy to use with Entity Framework Core (EF Core), which is the standard ORM for .NET.
+--------------------------------------------------
+MySolution/
+├── Application/        <-- Business logic (no DB code here)
+├── Domain/             <-- Entities, core models (no DB code here)
+├── Infrastructure/     <-- ✅ Database lives here (EF Core, Repositories, Migrations)
+└── WebApi/             <-- API endpoints (controllers)
+----------------------------------------------
+
+dotnet new classlib -n MyApi.Domain
+rm -rf src/MyApi.Domain (bash to delete)
+-----------------------------------------------
+In .NET projects, the project name (.csproj) and the namespace it generates usually follow PascalCase (capitalized words)
