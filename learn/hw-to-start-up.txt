@@ -69,3 +69,24 @@ Application = use cases, interfaces, DTOs
 Infrastructure = EF Core, external services, repository implementations
 
 WebApi = controllers, API endpoints
+src/
+   webapi/
+   WebApi.Application/
+   WebApi.Domain/
+   WebApi.Infrastructure/
+   -------------------------------------------------
+      Infrastructure/ DependencyInjection.cs
+   -------------------------------------------
+   public static class DependencyInjection
+{
+    public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration config)
+    {
+        services.AddDbContext<AppDbContext>(options =>
+            options.UseSqlServer(config.GetConnectionString("DefaultConnection")));
+
+        services.AddScoped<IUserRepository, UserRepository>();
+
+        return services;
+    }
+}
+--------------------------------------------------------
