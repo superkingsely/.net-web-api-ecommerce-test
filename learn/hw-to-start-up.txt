@@ -75,8 +75,17 @@ src/
    WebApi.Domain/
    WebApi.Infrastructure/
    -------------------------------------------------
-      Infrastructure/ DependencyInjection.cs
+      Infrastructure/
+├── Infrastructure.csproj
+└── DependencyInjection.cs
    -------------------------------------------
+   cd src/Infrastructure
+Use the dotnet new class command
+
+bash
+Copy code
+dotnet new class -n DependencyInjection
+   --------------------------------------
    public static class DependencyInjection
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration config)
