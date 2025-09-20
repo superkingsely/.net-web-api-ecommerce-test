@@ -1,0 +1,16 @@
+
+// Add services from Application & Infrastructure layers
+builder.Services.AddApplication();
+builder.Services.AddInfrastructure(builder.Configuration);
+
+// Add controllers
+builder.Services.AddControllers();
+---------------------------------------------------
+
+app.UseHttpsRedirection();
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.Run();

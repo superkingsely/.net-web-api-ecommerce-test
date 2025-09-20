@@ -1,0 +1,105 @@
+Alright 🚀 — here’s a **step-by-step CLI sequence** you can run in VS Code terminal to scaffold a **Clean Architecture solution** with 4 projects (Domain, Application, Infrastructure, WebApi).
+
+---
+
+# 📌 Step 1: Create Solution Root
+
+```bash
+mkdir CleanArchitectureDemo
+cd CleanArchitectureDemo
+dotnet new sln -n CleanArchitectureDemo
+```
+
+👉 Creates a root folder with a solution file.
+
+---
+
+# 📌 Step 2: Create Projects Inside `src/`
+
+```bash
+mkdir src
+cd src
+
+# 1. Domain (class library)
+dotnet new classlib -n Domain
+
+# 2. Application (class library)
+dotnet new classlib -n Application
+
+# 3. Infrastructure (class library)
+dotnet new classlib -n Infrastructure
+
+# 4. WebApi (ASP.NET Core Web API)
+dotnet new webapi -n WebApi
+```
+
+---
+
+# 📌 Step 3: Add Projects to Solution
+
+```bash
+cd ..
+dotnet sln add src/Domain/Domain.csproj
+dotnet sln add src/Application/Application.csproj
+dotnet sln add src/Infrastructure/Infrastructure.csproj
+dotnet sln add src/WebApi/WebApi.csproj
+```
+
+---
+
+# 📌 Step 4: Add Project References (dependencies)
+
+```bash
+# Application → Domain
+dotnet add src/Application/Application.csproj reference src/Domain/Domain.csproj
+
+# Infrastructure → Application + Domain
+dotnet add src/Infrastructure/Infrastructure.csproj reference src/Application/Application.csproj
+dotnet add src/Infrastructure/Infrastructure.csproj reference src/Domain/Domain.csproj
+
+# WebApi → Application + Infrastructure
+dotnet add src/WebApi/WebApi.csproj reference src/Application/Application.csproj
+dotnet add src/WebApi/WebApi.csproj reference src/Infrastructure/Infrastructure.csproj
+```
+
+---
+
+# 📌 Step 5: Run & Verify
+
+```bash
+dotnet build
+dotnet run --project src/WebApi/WebApi.csproj
+```
+
+👉 API should start on `https://localhost:5001`.
+
+---
+
+# 📂 Final Folder Structure
+
+```
+CleanArchitectureDemo/
+│── CleanArchitectureDemo.sln
+│── src/
+    ├── Domain/
+    │   └── Domain.csproj
+    ├── Application/
+    │   └── Application.csproj
+    ├── Infrastructure/
+    │   └── Infrastructure.csproj
+    └── WebApi/
+        └── WebApi.csproj
+```
+
+---
+
+✅ Now you have a **clean scaffolded solution** where:
+
+* `Domain` = Entities & Interfaces
+* `Application` = Business logic (use cases, commands, queries)
+* `Infrastructure` = EF Core, Repositories, external services
+* `WebApi` = Controllers & API endpoints
+
+---
+
+Do you want me to also include a **mini User CRUD flow example** (Entity → Repository → Service → Controller) inside this structure so you can test it immediately?

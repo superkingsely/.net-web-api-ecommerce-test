@@ -99,3 +99,17 @@ dotnet new class -n DependencyInjection
     }
 }
 --------------------------------------------------------
+to create a class
+dotnet new class -n User -o src/Domain/Entities
+---------------------------------------------------
+DatabaseDeployment options
+
+When deploying your .NET Web API project, you need a remote database that your API can connect to. For free/cheap hosting, you can use:
+
+SQLite → single .db file, can be deployed with your app (works for small projects, personal apps).
+
+PostgreSQL (with Npgsql EF Core provider) → free tiers available on Supabase, Railway, Render, Neon.tech.
+
+MySQL → free tier on Clever Cloud, Railway, PlanetScale.
+
+Azure SQL Database → Microsoft gives you a free trial, but not truly free forever.
