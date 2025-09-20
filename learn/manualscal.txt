@@ -60,6 +60,7 @@ dotnet add src/Infrastructure/Infrastructure.csproj reference src/Domain/Domain.
 # WebApi → Application + Infrastructure
 dotnet add src/WebApi/WebApi.csproj reference src/Application/Application.csproj
 dotnet add src/WebApi/WebApi.csproj reference src/Infrastructure/Infrastructure.csproj
+
 ```
 
 ---
