@@ -1,0 +1,67 @@
+Okay 👍 if you don’t have SQL Server installed yet, let’s go step by step to install it cleanly.
+
+---
+
+## 🔹 Step 1: Download SQL Server
+
+Go to Microsoft’s official download page:
+👉 [Download SQL Server 2022 Developer Edition](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
+
+* Choose **Developer Edition** (free, full features).
+* Run the installer.
+
+---
+
+## 🔹 Step 2: Run the Installer
+
+When the installer opens, you’ll see 3 options:
+
+1. **Basic** → Quick install with defaults.
+2. **Custom** → Lets you choose features (good if you want control).
+3. **Download Media** → Just downloads setup files.
+
+👉 For simplicity, pick **Basic**.
+
+* Accept license terms.
+* It will install to default instance name: `MSSQLSERVER`.
+
+---
+
+## 🔹 Step 3: Install SQL Server Management Studio (SSMS)
+
+SQL Server itself is just the **engine**, you also need a tool to interact with it.
+
+Download SSMS here:
+👉 [Download SSMS](https://aka.ms/ssmsfullsetup)
+
+* Install it (default options are fine).
+* Open SSMS after installation.
+
+---
+
+## 🔹 Step 4: Connect to Your Server
+
+When SSMS opens:
+
+* **Server type:** Database Engine
+* **Server name:** `localhost` (or `.` or `(local)`)
+* **Authentication:** Windows Authentication
+* Click **Connect**
+
+If it connects successfully → SQL Server is ready 🎉.
+
+---
+
+## 🔹 Step 5: Use in .NET
+
+In your `appsettings.json` of your WebApi project, connection string will look like:
+
+```json
+"ConnectionStrings": {
+  "DefaultConnection": "Server=localhost;Database=MyAppDb;Trusted_Connection=True;TrustServerCertificate=True;"
+}
+```
+
+---
+
+👉 Do you want me to show you how to also create a **test database and table** immediately after setup so you can confirm it’s working?
